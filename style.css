@@ -1,0 +1,1270 @@
+/* 1. Colores y configuración general */
+:root {
+    color-scheme: light;
+    --fondo: #ffffff;
+    --texto: #111111;
+    --secundario: #555555;
+    --borde: #dedede;
+    --superficie: #f5f5f5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: inherit;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--texto);
+    outline-offset: 6px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 2. Cabecera y navegación */
+header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid var(--borde);
+}
+
+header>a {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+}
+
+nav a {
+    padding: 10px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+/* 3. Secciones y títulos */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--borde);
+}
+
+h1,
+h2 {
+    margin: 0;
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+}
+
+h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+p {
+    max-width: 65ch;
+    margin: 20px 0 0;
+    color: var(--secundario);
+}
+
+/* 4. Portada principal */
+#inicio {
+    padding: 100px 0;
+}
+
+#inicio h1 {
+    max-width: 14ch;
+    font-size: clamp(2.75rem, 7vw, 6rem);
+    font-weight: 800;
+}
+
+#inicio>p:first-of-type {
+    max-width: 48ch;
+    font-size: 1.125rem;
+}
+
+#inicio>a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 48px;
+    margin-top: 32px;
+    padding: 14px 24px;
+    border: 1px solid var(--texto);
+    border-radius: 4px;
+    background: var(--texto);
+    color: var(--fondo);
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color 180ms ease;
+}
+
+#inicio>a:hover {
+    background: #333333;
+}
+
+#inicio>p:last-child {
+    max-width: 52ch;
+    margin-top: 16px;
+    font-size: 0.875rem;
+}
+
+/* 5. Pie de página */
+footer {
+    padding: 32px 24px;
+    background: var(--superficie);
+}
+
+footer p {
+    max-width: 1152px;
+    margin: 0 auto;
+    font-size: 0.875rem;
+}
+
+/* 6. Ajustes para celulares */
+@media (max-width: 640px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 20px;
+    }
+
+    nav {
+        gap: 8px 20px;
+    }
+
+    main {
+        padding: 0 20px;
+    }
+
+    section {
+        padding: 56px 0;
+    }
+
+    #inicio {
+        padding: 64px 0;
+    }
+
+    #inicio>a {
+        width: 100%;
+    }
+
+    footer {
+        padding: 28px 20px;
+    }
+}
+
+/* 7. Respetar la preferencia de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    #inicio>a {
+        transition: none;
+    }
+}
+
+/* Mantener el pie abajo en páginas con poco contenido */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header,
+main {
+    width: 100%;
+}
+
+main {
+    flex: 1;
+}
+
+/* Movimiento suave en los enlaces del menú */
+nav a {
+    display: inline-block;
+    transition:
+        transform 180ms ease,
+        color 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    nav a:hover {
+        transform: translateY(-4px);
+    }
+}
+
+nav a:focus-visible {
+    transform: translateY(-4px);
+}
+
+nav a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+}
+
+/* Encabezados de las páginas interiores */
+.pagina h1 {
+    max-width: 18ch;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.etiqueta {
+    margin: 0 0 16px;
+    color: var(--texto);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.aviso {
+    font-size: 0.875rem;
+}
+
+/* Distribución adaptable de tarjetas */
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--fondo);
+    transition:
+        transform 200ms ease,
+        box-shadow 200ms ease,
+        border-color 200ms ease;
+}
+
+.tarjeta h2 {
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.tarjeta .detalle {
+    margin-bottom: 24px;
+    font-size: 0.875rem;
+}
+
+.enlace-servicio {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 44px;
+    margin-top: auto;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.enlace-servicio:hover {
+    text-decoration: underline;
+    text-underline-offset: 5px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .tarjeta:hover {
+        transform: translateY(-6px);
+        border-color: var(--texto);
+        box-shadow: 0 12px 28px rgb(0 0 0 / 8%);
+    }
+}
+
+.tarjeta:focus-within {
+    border-color: var(--texto);
+}
+
+/* Entrada sutil al abrir cada página */
+main {
+    animation: aparecer 450ms ease-out both;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 900px) {
+    .tarjetas {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 640px) {
+    .tarjetas {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta {
+        padding: 24px;
+    }
+}
+
+/* Respetar la preferencia de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+    main {
+        animation: none;
+    }
+
+    nav a,
+    .tarjeta {
+        transition: none;
+    }
+
+    nav a:hover,
+    nav a:focus-visible,
+    .tarjeta:hover {
+        transform: none;
+    }
+}
+
+/* Tarjetas del equipo */
+.tarjeta-barbero {
+    padding: 0;
+}
+
+/* Espacio provisional para la fotografía */
+.avatar-barbero {
+    display: grid;
+    place-items: center;
+    min-height: 220px;
+    border-radius: 7px 7px 0 0;
+    background: var(--superficie);
+    color: #767676;
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+}
+
+/* Información del perfil */
+.perfil-barbero {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 28px;
+}
+
+.perfil-barbero>.etiqueta {
+    margin: 0 0 12px;
+}
+
+.perfil-barbero h2 {
+    font-size: 1.75rem;
+}
+
+/* Etiquetas de especialidades */
+.especialidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 24px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.especialidades li {
+    padding: 6px 12px;
+    border: 1px solid var(--borde);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.perfil-barbero .enlace-servicio {
+    padding-top: 12px;
+    border-top: 1px solid var(--borde);
+}
+
+/* Tarjetas de productos */
+.tarjeta-producto {
+    padding: 0;
+}
+
+/* Área reservada para la fotografía */
+.foto-producto {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 4 / 3;
+    padding: 24px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--borde);
+    border-radius: 7px 7px 0 0;
+    background: var(--superficie);
+}
+
+.foto-producto.pendiente {
+    background:
+        linear-gradient(135deg, #f8f8f8, #eaeaea);
+}
+
+.foto-producto>span {
+    color: var(--secundario);
+    font-size: 0.875rem;
+}
+
+/* Se aplicará cuando agreguemos las fotografías */
+.foto-producto img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: contain;
+    transition: transform 250ms ease;
+}
+
+/* Texto y enlace de cada producto */
+.info-producto {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 28px;
+}
+
+.info-producto>.etiqueta {
+    margin: 0 0 12px;
+}
+
+.info-producto h2 {
+    font-size: 1.5rem;
+}
+
+.info-producto .precio-producto {
+    margin: 24px 0;
+    color: var(--texto);
+    font-weight: 700;
+}
+
+.info-producto .enlace-servicio {
+    padding-top: 12px;
+    border-top: 1px solid var(--borde);
+}
+
+/* Información sobre pedidos */
+.nota-catalogo {
+    margin-top: 40px;
+    padding: 28px;
+    border-left: 3px solid var(--texto);
+    background: var(--superficie);
+}
+
+.nota-catalogo h2 {
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+.nota-catalogo p {
+    margin-top: 12px;
+}
+
+/* Acercamiento suave de la fotografía */
+@media (hover: hover) and (pointer: fine) {
+    .tarjeta-producto:hover .foto-producto img {
+        transform: scale(1.04);
+    }
+}
+
+/* Respetar la preferencia de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .foto-producto img {
+        transition: none;
+    }
+
+    .tarjeta-producto:hover .foto-producto img {
+        transform: none;
+    }
+}
+
+/* Asegurar que los elementos ocultos no ocupen espacio */
+[hidden] {
+    display: none !important;
+}
+
+/* Formulario e información lateral */
+.contacto-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 48px;
+    margin-top: 40px;
+}
+
+.form-contacto,
+.contacto-info {
+    min-width: 0;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.campo label,
+.form-contacto legend {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #767676;
+    border-radius: 4px;
+    background: var(--fondo);
+    color: var(--texto);
+    font: inherit;
+}
+
+.campo textarea {
+    resize: vertical;
+}
+
+.campo input:focus-visible,
+.campo select:focus-visible,
+.campo textarea:focus-visible,
+.boton:focus-visible {
+    outline: 3px solid var(--texto);
+    outline-offset: 3px;
+}
+
+.form-contacto fieldset {
+    min-width: 0;
+    margin: 0 0 24px;
+    padding: 20px;
+    border: 1px solid var(--borde);
+    border-radius: 4px;
+}
+
+.form-contacto legend {
+    padding: 0 8px;
+}
+
+.campos-fecha {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.ayuda {
+    margin: 0 0 20px;
+    font-size: 0.875rem;
+}
+
+/* Botones reutilizables */
+.boton {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 48px;
+    padding: 14px 24px;
+    border: 1px solid var(--texto);
+    border-radius: 4px;
+    background: var(--texto);
+    color: var(--fondo);
+    font: inherit;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+        background-color 180ms ease,
+        transform 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .boton:hover {
+        background: #333333;
+        transform: translateY(-2px);
+    }
+}
+
+/* Explicación del proceso */
+.contacto-info {
+    padding: 32px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--superficie);
+}
+
+.contacto-info h2 {
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+}
+
+.contacto-info ol {
+    margin: 24px 0;
+    padding-left: 24px;
+    color: var(--secundario);
+}
+
+.contacto-info li+li {
+    margin-top: 16px;
+}
+
+.datos-local {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--borde);
+}
+
+.datos-local h3 {
+    margin: 0;
+}
+
+/* Vista previa del mensaje */
+#estado-contacto {
+    margin-top: 16px;
+}
+
+.resultado-contacto {
+    margin-top: 24px;
+    padding: 24px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+}
+
+.resultado-contacto h2 {
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+}
+
+#vista-mensaje {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: inherit;
+    color: var(--secundario);
+}
+
+.resultado-contacto .ayuda {
+    margin: 16px 0 0;
+}
+
+@media (max-width: 800px) {
+    .contacto-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .campos-fecha {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .contacto-info {
+        padding: 24px;
+    }
+
+    .form-contacto .boton {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .boton {
+        transition: none;
+    }
+
+    .boton:hover {
+        transform: none;
+    }
+}
+
+/* Portada: texto y fotografía */
+#inicio.portada {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 48px;
+    padding: 72px 0;
+}
+
+.portada-contenido {
+    min-width: 0;
+}
+
+#inicio.portada h1 {
+    max-width: 14ch;
+    font-size: clamp(2.75rem, 5.5vw, 5rem);
+}
+
+.portada-contenido>.etiqueta {
+    max-width: none;
+    margin: 0 0 24px;
+}
+
+.portada-descripcion {
+    max-width: 42ch;
+    margin-top: 24px;
+    font-size: 1.125rem;
+}
+
+/* Acciones de la portada */
+.portada-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+.portada-acciones .boton {
+    gap: 16px;
+}
+
+.boton-secundario {
+    background: transparent;
+    color: var(--texto);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .boton-secundario:hover {
+        background: var(--superficie);
+    }
+}
+
+.portada-aviso {
+    margin-top: 20px;
+    font-size: 0.875rem;
+}
+
+/* Fotografía protagonista */
+.portada-imagen {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    border-radius: 8px;
+    background: var(--superficie);
+}
+
+.portada-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    filter: grayscale(100%);
+    transition: transform 600ms ease;
+}
+
+.portada-imagen figcaption {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    padding: 10px 12px;
+    border-radius: 4px;
+    background: rgb(0 0 0 / 80%);
+    color: #ffffff;
+    font-size: 0.75rem;
+    line-height: 1.5;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .portada-imagen:hover img {
+        transform: scale(1.035);
+    }
+}
+
+/* Accesos a las páginas interiores */
+.inicio-explorar .numero-seccion {
+    display: block;
+    margin-bottom: 24px;
+    color: var(--secundario);
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.inicio-explorar h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+}
+
+.inicio-explorar .tarjeta p {
+    margin-bottom: 24px;
+}
+
+/* Portada en tablet y celular */
+@media (max-width: 900px) {
+    #inicio.portada {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 56px 0;
+    }
+
+    .portada-imagen {
+        width: 100%;
+        max-width: 640px;
+        aspect-ratio: 4 / 3;
+    }
+}
+
+@media (max-width: 480px) {
+    .portada-acciones {
+        flex-direction: column;
+    }
+
+    .portada-acciones .boton {
+        width: 100%;
+    }
+}
+
+/* Respetar la preferencia de reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+    .portada-imagen img {
+        transition: none;
+    }
+
+    .portada-imagen:hover img {
+        transform: none;
+    }
+}
+
+/* Acceso directo para navegación con teclado */
+.saltar-contenido {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 100;
+    padding: 12px 20px;
+    border: 2px solid var(--texto);
+    border-radius: 4px;
+    background: var(--fondo);
+    color: var(--texto);
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateY(-200%);
+}
+
+.saltar-contenido:focus {
+    transform: translateY(0);
+}
+
+/* Pie de página */
+.pie {
+    padding: 56px 24px 24px;
+    background: #111111;
+    color: #ffffff;
+}
+
+.pie-contenido {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.2fr) minmax(0, 0.7fr) minmax(0, 1fr);
+    gap: 48px;
+    max-width: 1152px;
+    margin: 0 auto;
+}
+
+.pie-logo {
+    display: inline-block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.pie h2 {
+    margin: 0 0 20px;
+    font-size: 1rem;
+    line-height: 1.4;
+    letter-spacing: 0;
+}
+
+.pie p {
+    max-width: 38ch;
+    margin: 16px 0 0;
+    color: #cccccc;
+    font-size: 0.875rem;
+}
+
+/* Navegación vertical */
+.pie-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.pie-nav h2 {
+    margin-bottom: 12px;
+}
+
+.pie-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px 0;
+    color: #cccccc;
+}
+
+.pie-consulta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    margin-top: 20px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-underline-offset: 5px;
+}
+
+/* Línea inferior */
+.pie-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    max-width: 1152px;
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid #444444;
+}
+
+.pie-inferior p {
+    margin: 0;
+}
+
+.pie-inferior a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.875rem;
+    text-underline-offset: 5px;
+}
+
+/* Foco visible sobre el fondo oscuro */
+.pie a:focus-visible {
+    outline-color: #ffffff;
+}
+
+@media (max-width: 800px) {
+    .pie-contenido {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pie {
+        padding: 40px 20px 20px;
+    }
+
+    .pie-inferior {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Galería de trabajos */
+.trabajos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.trabajo {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    background: var(--fondo);
+}
+
+.trabajo-imagen {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    border-radius: 7px 7px 0 0;
+    background: var(--superficie);
+}
+
+.trabajo-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms ease;
+}
+
+.trabajo-contenido {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 28px;
+}
+
+.trabajo-contenido>.etiqueta {
+    margin: 0 0 12px;
+}
+
+.trabajo h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+}
+
+.trabajo-contenido>p:not(.etiqueta) {
+    margin: 16px 0 24px;
+}
+
+.trabajo .enlace-servicio {
+    padding-top: 16px;
+    border-top: 1px solid var(--borde);
+}
+
+/* Texto disponible para lectores de pantalla */
+.solo-lectores {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .trabajo:hover .trabajo-imagen img {
+        transform: scale(1.04);
+    }
+}
+
+@media (max-width: 640px) {
+    .trabajos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trabajo-contenido {
+        padding: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trabajo-imagen img {
+        transition: none;
+    }
+
+    .trabajo:hover .trabajo-imagen img {
+        transform: none;
+    }
+}
+
+/* Fotografías de muestra para la presentación */
+.avatar-barbero.foto-equipo {
+    position: relative;
+    display: block;
+    height: 280px;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.foto-equipo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+}
+
+.foto-equipo span,
+.foto-catalogo>span {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    padding: 5px 9px;
+    border-radius: 3px;
+    background: rgba(0, 0, 0, .78);
+    color: white;
+    font-size: .7rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.5;
+}
+
+.foto-producto.foto-catalogo {
+    position: relative;
+    padding: 0;
+}
+
+.foto-catalogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 640px) {
+    .avatar-barbero.foto-equipo {
+        height: 320px;
+    }
+}
+
+.foto-catalogo img {
+    object-fit: contain;
+}
+
+.foto-equipo img,
+.trabajo-imagen img {
+    object-position: center 30%;
+}
+
+/* Formulario no disponible si su JavaScript no se inicializa. */
+.boton:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.pie-compacto {
+    padding: 16px 24px;
+    background: #111;
+    color: #fff;
+}
+
+.pie-compacto-contenido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    max-width: 1152px;
+    margin: 0 auto;
+}
+
+.pie-compacto-marca {
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.pie-compacto-local address {
+    margin-top: 3px;
+    color: #ccc;
+    font-size: 0.85rem;
+    font-style: normal;
+}
+
+.pie-redes {
+    display: flex;
+    gap: 8px;
+}
+
+.pie-redes a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #666;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.pie-redes svg {
+    width: 20px;
+    height: 20px;
+}
+
+.pie-redes a:hover {
+    background: #fff;
+    color: #111;
+}
+
+.pie-compacto a:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+}
+/* Emblema de Tarazona en la portada y el pie */
+#inicio .portada-imagen {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    background: #141414;
+}
+
+#inicio .portada-imagen img {
+    width: 84%;
+    height: auto;
+    object-fit: contain;
+    filter: none;
+}
+
+.pie-compacto-marca {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pie-compacto-marca img {
+    flex: none;
+    width: 44px;
+    height: 44px;
+}

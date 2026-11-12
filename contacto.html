@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+    <meta name="referrer" content="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Conoce nuestros servicios de barbería, barberos y productos. Consulta tu próxima cita por WhatsApp.">
+
+    <title>Contacto | Barbería Tarazona Style</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <a class="saltar-contenido" href="#contenido">
+        Saltar al contenido
+    </a>
+    <header>
+        <a href="index.html" aria-label="Barbería Tarazona Style, ir al inicio">
+            Barbería Tarazona Style
+        </a>
+
+        <nav aria-label="Navegación principal">
+            <a href="index.html">Inicio</a>
+            <a href="servicios.html">Servicios</a>
+            <a href="barberos.html">Barberos</a>
+            <a href="productos.html">Productos</a>
+            <a href="contacto.html">Contacto</a>
+        </nav>
+    </header>
+
+    <main id="contenido" tabindex="-1">
+        <section class="pagina" aria-labelledby="titulo-contacto">
+            <p class="etiqueta">COORDINEMOS TU VISITA</p>
+
+            <h1 id="titulo-contacto">Tu próximo look empieza aquí</h1>
+
+            <p>
+                Cuéntanos qué necesitas. Prepararemos un mensaje
+                para que puedas enviarlo por WhatsApp.
+            </p>
+
+            <div class="contacto-layout">
+                <form id="form-contacto" class="form-contacto">
+                    <div class="campo">
+                        <label for="nombre">Tu nombre *</label>
+                        <input id="nombre" name="nombre" type="text" autocomplete="given-name" maxlength="60"
+                            placeholder="¿Cómo te llamas?" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="consulta">¿Qué te interesa? *</label>
+                        <select id="consulta" name="consulta" required>
+                            <option value="">Selecciona una opción</option>
+                            <optgroup label="Servicios de ejemplo">
+                                <option value="Corte de cabello">Corte de cabello</option>
+                                <option value="Perfilado de barba">Perfilado de barba</option>
+                                <option value="Corte y barba">Corte y barba</option>
+                                <option value="Semiondulación">Semiondulación</option>
+                                <option value="Coloración de cabello">Coloración de cabello</option>
+                                <option value="Mechas y reflejos">Mechas y reflejos</option>
+                            </optgroup>
+                            <optgroup label="Otras consultas">
+                                <option value="Productos">Consultar productos</option>
+                                <option value="Otra consulta">Otra consulta</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <fieldset id="datos-cita" hidden disabled>
+                        <legend>Preferencias para tu cita</legend>
+
+                        <div class="campo">
+                            <label for="barbero">Barbero</label>
+                            <select id="barbero" name="barbero">
+                                <option value="Cualquiera disponible">
+                                    Cualquiera disponible
+                                </option>
+                                <option value="Barbero Uno">Barbero Uno — ejemplo</option>
+                                <option value="Barbero Dos">Barbero Dos — ejemplo</option>
+                                <option value="Barbero Tres">Barbero Tres — ejemplo</option>
+                            </select>
+                        </div>
+
+                        <div class="campos-fecha">
+                            <div class="campo">
+                                <label for="fecha">Fecha preferida</label>
+                                <input id="fecha" name="fecha" type="date">
+                            </div>
+
+                            <div class="campo">
+                                <label for="hora">Hora preferida</label>
+                                <input id="hora" name="hora" type="time" aria-describedby="aviso-horario">
+                            </div>
+                        </div>
+
+                        <p id="aviso-horario" class="ayuda">
+                            Fecha y hora opcionales, sujetas a confirmación.
+                            Este formulario no muestra la agenda disponible.
+                        </p>
+                    </fieldset>
+
+                    <div class="campo">
+                        <label for="comentario">¿Algo más que debamos saber?</label>
+                        <textarea id="comentario" name="comentario" rows="4" maxlength="500"
+                            placeholder="Por ejemplo, el producto que te interesa."></textarea>
+                    </div>
+
+                    <p class="ayuda">
+                        Los campos con * son obligatorios. Los datos se incluirán
+                        en el mensaje que tú decidas enviar por WhatsApp.
+                        Esta página no los guarda en una base de datos. Al abrir WhatsApp,
+                        el texto se comparte con ese servicio para preparar la conversación.
+                        No incluyas contraseñas ni datos bancarios.
+                    </p>
+
+                    <button id="preparar-mensaje" class="boton" type="submit" disabled>
+                        Preparar mensaje
+                    </button>
+
+                    <p id="estado-contacto" class="ayuda" role="status"></p>
+
+                    <div id="resultado-contacto" class="resultado-contacto" hidden>
+                        <h2>Revisa tu mensaje</h2>
+
+                        <pre id="vista-mensaje"></pre>
+
+                        <a id="enlace-whatsapp" class="boton" target="_blank" rel="noopener noreferrer" hidden>
+                            Abrir WhatsApp
+                        </a>
+
+                        <p class="ayuda">
+                            Se abrirá WhatsApp en otra pestaña o en la aplicación.
+                            Debes pulsar Enviar allí para completar la consulta.
+                        </p>
+                    </div>
+
+                    <noscript>
+                        <p>
+                            Activa JavaScript para preparar el mensaje de consulta.
+                        </p>
+                    </noscript>
+                </form>
+
+                <aside class="contacto-info" aria-labelledby="titulo-proceso">
+                    <h2 id="titulo-proceso">Así coordinamos tu cita</h2>
+
+                    <ol>
+                        <li>Nos envías tu consulta por WhatsApp.</li>
+                        <li>Confirmamos el servicio, el barbero y el horario.</li>
+                        <li>Te indicamos el adelanto y los datos para pagar por Yape.</li>
+                        <li>Verificamos el pago y confirmamos tu cita.</li>
+                    </ol>
+
+                    <p>
+                        Espera nuestra confirmación de disponibilidad
+                        antes de realizar un pago.
+                    </p>
+
+                    <div class="datos-local">
+                        <h3>Visítanos</h3>
+                        <p>Dirección y horarios pendientes de confirmar.</p>
+                    </div>
+                </aside>
+            </div>
+        </section>
+    </main>
+    <footer class="pie-compacto">
+        <div class="pie-compacto-contenido">
+            <div class="pie-compacto-local">
+                <a class="pie-compacto-marca" href="index.html"><img src="img/logo-tarazona.png" width="44" height="44" alt="" loading="lazy"> Barbería Tarazona Style</a>
+                <address>Av. Estilo 123, Lima · Dirección de ejemplo</address>
+            </div>
+
+            <div class="pie-redes">
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Instagram (abre en otra pestaña)">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <rect x="3" y="3" width="18" height="18" rx="5" />
+                        <circle cx="12" cy="12" r="4" />
+                        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                    </svg>
+                </a>
+
+                <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="Facebook (abre en otra pestaña)">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path
+                            d="M14 22v-9h3l.5-3H14V8c0-1 .3-1.5 1.6-1.5H18V3.8c-.4-.1-1.5-.3-2.8-.3C12.6 3.5 11 5.1 11 8v2H8v3h3v9z" />
+                    </svg>
+                </a>
+
+                <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer"
+                    aria-label="TikTok (abre en otra pestaña)">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M14 3h3c.3 2.1 1.5 3.6 4 4v3a8 8 0 0 1-4-1.5V16a6 6 0 1 1-6-6h1v3h-1a3 3 0 1 0 3 3z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
